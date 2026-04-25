@@ -1,9 +1,10 @@
-import React from "react";
+import { RouterProvider } from "react-router";
+import { HeroAppRouter } from "./router/HeroAppRouter";
 
 export const App = () => {
   return (
-    <div>
-      <h1 className="text-red-500 text-3xl text-center">Hello, World!</h1>
-    </div>
+    <>
+      <RouterProvider router={HeroAppRouter} />
+    </>
   );
 };
