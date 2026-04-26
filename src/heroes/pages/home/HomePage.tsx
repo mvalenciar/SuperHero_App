@@ -1,3 +1,9 @@
+import { Hero } from "../../../shared/components/Hero";
+
 export const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <Hero />
+    </div>
+  );
 };
