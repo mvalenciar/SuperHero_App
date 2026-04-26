@@ -1,4 +1,4 @@
-import { Hero } from "../../../shared/components/Hero";
+import { Hero } from "../../../shared/components/custom/Hero";
 
 export const HomePage = () => {
   return (
