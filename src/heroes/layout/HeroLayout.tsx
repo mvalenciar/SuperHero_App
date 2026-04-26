@@ -1,3 +1,4 @@
+import { MenuBar } from "@/components/custom/MenuBar";
 import { Outlet } from "react-router";
 
 export const HeroLayout = () => {
@@ -8,7 +9,7 @@ export const HeroLayout = () => {
 
       {/* Glow rojo */}
       <div className="absolute -bottom-25 -right-25 w-100 h-100 bg-red-500 opacity-20 blur-3xl rounded-full"></div>
-
+      <MenuBar />
       <Outlet />
     </div>
   );
