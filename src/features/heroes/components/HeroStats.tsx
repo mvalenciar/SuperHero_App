@@ -1,4 +1,4 @@
-import { Badge } from "../ui/badge";
+import { Badge } from "../../../shared/components/ui/badge";
 import { Brain, Heart, User, Zap } from "lucide-react";
 import { HeroStatCard } from "./HeroStatCard";
 

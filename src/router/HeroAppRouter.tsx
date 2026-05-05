@@ -1,6 +1,6 @@
+import { HeroLayout } from "@/features/heroes/layout/HeroLayout";
+import { HomePage } from "@/features/heroes/pages/home/HomePage";
 import { createBrowserRouter } from "react-router";
-import { HomePage } from "../heroes/pages/home/HomePage";
-import { HeroLayout } from "../heroes/layout/HeroLayout";
 
 export const HeroAppRouter = createBrowserRouter([
   {

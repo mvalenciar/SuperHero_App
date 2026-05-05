@@ -1,11 +1,12 @@
 import { Link } from "react-router";
+
+import { MobileMenu } from "./MobileMenu";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
 } from "../ui/navigation-menu";
-import { MobileMenu } from "./MobileMenu";
 
 export const MenuBar = () => {
   return (
