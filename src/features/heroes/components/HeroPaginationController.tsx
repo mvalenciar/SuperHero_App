@@ -32,11 +32,6 @@ export const HeroPaginationController = ({
   for (let i = start; i <= end; i++) {
     pages.push(i);
   }
-  console.log({ currentPage: currentPage });
-  console.log({ group: group });
-  console.log({ start: start });
-  console.log({ end: end });
-  console.log({ pages: pages });
 
   return (
     <div className="m-8">

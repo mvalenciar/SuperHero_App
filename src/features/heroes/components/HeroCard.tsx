@@ -1,33 +1,36 @@
-import { cn } from "@/lib/utils";
-
+//Components
+import { Card, CardContent } from "@/components/ui/card";
 import { HeroStatBar } from "./HeroStatBar";
 
-import { Badge } from "../../../shared/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+//Action and types
+import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { Spinner } from "@/components/ui/spinner";
 
 interface HeroCardProps {
   name: string;
-  alias: string;
+  fullname: string;
   image: string;
-  powers: string[];
-  team: string;
-  description: string;
+  publisher: string | null;
   stats: {
+    power: number;
     strength: number;
     speed: number;
     intelligence: number;
   };
 }
 
-export function HeroCard({
+export const HeroCard = ({
   name,
-  alias,
+  fullname,
   image,
-  powers,
-  team,
-  description,
+  publisher,
   stats,
-}: HeroCardProps) {
+}: HeroCardProps) => {
+  const [loadedImage, setLoadedImage] = useState("");
+
+  const imageLoaded = loadedImage === image;
+
   return (
     <Card
       className={cn(
@@ -42,23 +45,38 @@ export function HeroCard({
 
       {/* Hero Image */}
       <div className="relative h-72 overflow-hidden bg-amber-200">
+        {/* Skeleton */}
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-zinc-700 flex justify-center items-center">
+            <Spinner className="size-20" />
+          </div>
+        )}
+
         <img
+          key={image}
           src={image}
           alt={name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+          onLoad={() => setLoadedImage(image)}
+          onError={() => setLoadedImage(image)}
+          className={cn(
+            "w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105",
+            imageLoaded ? "opacity-100" : "opacity-0",
+          )}
         />
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
 
         {/* Team badge */}
-        <Badge className="absolute top-4 right-4 bg-amber-500/90 text-zinc-950 font-semibold border-0 backdrop-blur-sm">
-          {team}
-        </Badge>
+
+        <div className="absolute top-4 right-4 bg-amber-500/90 text-zinc-950 font-semibold border-0 backdrop-blur-sm rounded-full p-2 text-xl size-12 flex justify-center items-center">
+          {stats.power}
+        </div>
 
         {/* Hero name overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-1">
-            {alias}
+            {fullname === "" ? `${name}` : `${fullname}`}
           </p>
           <h2 className="text-3xl font-bold text-white tracking-tight">
             {name}
@@ -67,24 +85,6 @@ export function HeroCard({
       </div>
 
       <CardContent className="relative space-y-5 pt-2">
-        {/* Description */}
-        <p className="text-zinc-400 text-sm leading-relaxed line-clamp-2">
-          {description}
-        </p>
-
-        {/* Powers */}
-        <div className="flex flex-wrap gap-2">
-          {powers.map((power) => (
-            <Badge
-              key={power}
-              variant="secondary"
-              className="bg-zinc-800/80 text-zinc-300 border border-zinc-700/50 hover:bg-zinc-700/80 hover:text-amber-400 transition-colors text-xs"
-            >
-              {power}
-            </Badge>
-          ))}
-        </div>
-
         {/* Stats */}
         <div className="space-y-3 pt-2">
           <HeroStatBar stat="Fuerza" value={stats.strength} />
@@ -99,11 +99,11 @@ export function HeroCard({
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
             </svg>
             <span className="text-xs font-medium tracking-wider uppercase">
-              DC Universe
+              {publisher}
             </span>
           </div>
         </div>
       </CardContent>
     </Card>
   );
-}
+};
