@@ -1,11 +1,15 @@
+//hooks
+import { useState } from "react";
+
 //Components
 import { Card, CardContent } from "@/components/ui/card";
 import { HeroStatBar } from "./HeroStatBar";
+import { Heart } from "lucide-react";
+import { Spinner } from "@/components/ui/spinner";
 
 //Action and types
 import { cn } from "@/lib/utils";
-import { useState } from "react";
-import { Spinner } from "@/components/ui/spinner";
+import { Button } from "@/components/ui/button";
 
 interface HeroCardProps {
   name: string;
@@ -28,6 +32,7 @@ export const HeroCard = ({
   stats,
 }: HeroCardProps) => {
   const [loadedImage, setLoadedImage] = useState("");
+  const [favorite, setFavorite] = useState(false);
 
   const imageLoaded = loadedImage === image;
 
@@ -67,10 +72,26 @@ export const HeroCard = ({
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
 
-        {/* Team badge */}
+        <div className="w-full flex items-center justify-between absolute top-0 pr-3 pl-3">
+          {/* Favorite button */}
 
-        <div className="absolute top-4 right-4 bg-amber-500/90 text-zinc-950 font-semibold border-0 backdrop-blur-sm rounded-full p-2 text-xl size-12 flex justify-center items-center">
-          {stats.power}
+          <Button
+            className="bg-white rounded-md shadow-md p-0 size-10"
+            onClick={() => setFavorite((prev) => !prev)}
+          >
+            <Heart
+              className={cn(
+                "size-8 cursor-pointer transition-all duration-300 active:scale-125",
+                favorite
+                  ? "text-rose-500 fill-rose-500 scale-110"
+                  : "text-muted-foreground hover:scale-110",
+              )}
+            />
+          </Button>
+          {/* Power badge */}
+          <div className="bg-amber-500/90 text-zinc-950 font-semibold border-0 backdrop-blur-sm rounded-full p-2 text-xl size-12 flex justify-center items-center">
+            {stats.power}
+          </div>
         </div>
 
         {/* Hero name overlay */}
@@ -92,7 +113,7 @@ export const HeroCard = ({
           <HeroStatBar stat="Inteligencia" value={stats.intelligence} />
         </div>
 
-        {/* DC Logo watermark */}
+        {/* Publisher Logo watermark */}
         <div className="flex items-center justify-center pt-2">
           <div className="flex items-center gap-2 text-zinc-600">
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
