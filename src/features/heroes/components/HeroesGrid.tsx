@@ -1,8 +1,4 @@
-//Hooks
-import { useState } from "react";
-
 //Components
-
 import { HeroPaginationController } from "./HeroPaginationController";
 import { CustomSearchController } from "@/components/custom/CustomSearchController";
 import { Spinner } from "@/components/ui/spinner";
@@ -10,6 +6,7 @@ import { Spinner } from "@/components/ui/spinner";
 //Action and types
 import type { superhero } from "../interfaces/superhero.interface";
 import { HeroCard } from "./HeroCard";
+import { usePagination } from "../hooks/usePagination";
 
 interface HeroesGridProps {
   heroes: superhero[];
@@ -17,21 +14,14 @@ interface HeroesGridProps {
 }
 
 export const HeroesGrid = ({ heroes, loading }: HeroesGridProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
-  const totalPages = Math.max(1, Math.ceil(heroes.length / itemsPerPage));
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = itemsPerPage * currentPage;
-
-  const changeToNextPage = () => {
-    if (currentPage === totalPages) return;
-    setCurrentPage((prev) => prev + 1);
-  };
-
-  const changeToPrevPage = () => {
-    if (currentPage === 1) return;
-    setCurrentPage((prev) => prev - 1);
-  };
+  const {
+    startIndex,
+    endIndex,
+    totalPages,
+    currentPage,
+    changeToNextPage,
+    changeToPrevPage,
+  } = usePagination(heroes);
 
   if (loading) {
     return (
