@@ -28,7 +28,7 @@ export const HeroPaginationController = ({
   const start = group * pagesPerGroup + 1;
   const end = Math.min(start + pagesPerGroup - 1, totalPages);
 
-  const pages = [];
+  const pages: number[] = [];
   for (let i = start; i <= end; i++) {
     pages.push(i);
   }
