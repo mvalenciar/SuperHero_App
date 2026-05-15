@@ -1,17 +1,15 @@
-import { Field } from "../ui/field";
-import { ButtonGroup } from "../ui/button-group";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Search } from "lucide-react";
 
 export const CustomSearchController = () => {
   return (
-    <div className="w-full max-w-md mr-auto ml-auto mb-3">
+    <div className="w-full max-w-md mx-auto mb-3">
       <div
         className="
         flex items-center 
-        bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 
-        p-[2px] rounded-xl
+        bg-linear-to-r from-red-600 via-purple-600 to-blue-600 
+        p-0.5 rounded-xl
       "
       >
         <div
@@ -30,7 +28,7 @@ export const CustomSearchController = () => {
               border-0 
               focus-visible:ring-0 
               bg-transparent
-              text-black
+              text-foreground
             "
           />
 
