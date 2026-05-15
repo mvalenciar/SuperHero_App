@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router";
 import { HeroAppRouter } from "./router/HeroAppRouter";
-import { HeroesContextProvider } from "./context/HeroesContext";
+import { HeroesContextProvider } from "./context/HeroesProvider";
 
 export const App = () => {
   return (

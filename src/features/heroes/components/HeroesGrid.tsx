@@ -1,12 +1,18 @@
+//Hooks
+import { useContext } from "react";
+import { usePagination } from "../hooks/usePagination";
+
+//Context
+import { HeroesContext } from "../../../context/HeroesContext";
+
 //Components
 import { HeroPaginationController } from "./HeroPaginationController";
 import { CustomSearchController } from "@/components/custom/CustomSearchController";
 import { Spinner } from "@/components/ui/spinner";
+import { HeroCard } from "./HeroCard";
 
 //Action and types
 import type { superhero } from "../interfaces/superhero.interface";
-import { HeroCard } from "./HeroCard";
-import { usePagination } from "../hooks/usePagination";
 
 interface HeroesGridProps {
   heroes: superhero[];
@@ -22,6 +28,8 @@ export const HeroesGrid = ({ heroes, loading }: HeroesGridProps) => {
     changeToNextPage,
     changeToPrevPage,
   } = usePagination(heroes);
+
+  const { isFavorite, saveFavorite } = useContext(HeroesContext);
 
   if (loading) {
     return (
@@ -42,6 +50,8 @@ export const HeroesGrid = ({ heroes, loading }: HeroesGridProps) => {
             image={hero.image}
             publisher={hero.publisher}
             stats={hero.stats}
+            favorite={isFavorite(hero.id)}
+            saveFavorite={() => saveFavorite(hero.id)}
           />
         ))}
       </div>

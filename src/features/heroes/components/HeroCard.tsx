@@ -22,6 +22,8 @@ interface HeroCardProps {
     speed: number;
     intelligence: number;
   };
+  favorite: boolean;
+  saveFavorite: () => void;
 }
 
 export const HeroCard = ({
@@ -30,9 +32,10 @@ export const HeroCard = ({
   image,
   publisher,
   stats,
+  favorite,
+  saveFavorite,
 }: HeroCardProps) => {
   const [loadedImage, setLoadedImage] = useState("");
-  const [favorite, setFavorite] = useState(false);
 
   const imageLoaded = loadedImage === image;
 
@@ -76,8 +79,8 @@ export const HeroCard = ({
           {/* Favorite button */}
 
           <Button
-            className="bg-white rounded-md shadow-md p-0 size-10"
-            onClick={() => setFavorite((prev) => !prev)}
+            className="bg-white rounded-md shadow-md p-0 size-10 cursor-pointer"
+            onClick={saveFavorite}
           >
             <Heart
               className={cn(

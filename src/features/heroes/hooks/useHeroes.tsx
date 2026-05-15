@@ -1,5 +1,5 @@
 //hooks
-import { useState } from "react";
+import { useCallback, useState } from "react";
 //type and actions
 import type { superhero } from "../interfaces/superhero.interface";
 import { getSuperheroesByApi } from "../actions/get-superheroes-by-api";
@@ -8,7 +8,7 @@ export const useHeroes = () => {
   const [heroes, setHeroes] = useState<superhero[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const loadHeroes = async () => {
+  const loadHeroes = useCallback(async () => {
     try {
       //1. Revisar Cache
       const cachedHeroes = localStorage.getItem("heroes");
@@ -32,7 +32,7 @@ export const useHeroes = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
   return {
     //values
     heroes,
