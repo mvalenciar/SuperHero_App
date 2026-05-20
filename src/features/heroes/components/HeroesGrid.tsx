@@ -12,10 +12,10 @@ import { Spinner } from "@/components/ui/spinner";
 import { HeroCard } from "./HeroCard";
 
 //Action and types
-import type { superhero } from "../interfaces/superhero.interface";
+import type { Superhero } from "../interfaces/superhero.interface.ts";
 
 interface HeroesGridProps {
-  heroes: superhero[];
+  heroes: Superhero[];
   loading: boolean;
 }
 

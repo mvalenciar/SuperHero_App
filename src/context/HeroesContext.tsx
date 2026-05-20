@@ -1,10 +1,10 @@
 import { createContext } from "react";
 
-import type { superhero } from "src/features/heroes/interfaces/superhero.interface";
+import type { Superhero } from "../features/heroes/interfaces/superhero.interface.ts";
 
 interface HeroesContextProps {
   //state
-  heroes: superhero[];
+  heroes: Superhero[];
   loading: boolean;
   favoriteHeroesId: number[];
 

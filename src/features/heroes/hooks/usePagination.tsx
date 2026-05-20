@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { superhero } from "../interfaces/superhero.interface";
+import type { Superhero } from "../interfaces/superhero.interface";
 
-export const usePagination = (heroes: superhero[]) => {
+export const usePagination = (heroes: Superhero[]) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   const totalPages = Math.max(1, Math.ceil(heroes.length / itemsPerPage));

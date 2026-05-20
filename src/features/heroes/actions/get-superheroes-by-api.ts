@@ -1,18 +1,20 @@
 import { superheroApi } from "../api/akababSuperhero.api";
 import type { SuperheroResponse } from "../interfaces/akababSuperhero.response";
-import type { superhero } from "../interfaces/superhero.interface";
+import type { Superhero } from "../interfaces/superhero.interface";
 
 const HEROES_ENDPOINT = "/all.json";
 
-export const getSuperheroesByApi = async (): Promise<superhero[]> => {
+export const getSuperheroesByApi = async (): Promise<Superhero[]> => {
   try {
     const response = await superheroApi<SuperheroResponse[]>(HEROES_ENDPOINT);
 
-    const superheroesList: superhero[] = response.data
+    const superheroesList: Superhero[] = response.data
       .filter(
         (hero) =>
-          hero.biography.publisher === "Marvel Comics" ||
-          hero.biography.publisher === "DC Comics",
+          (hero.biography.publisher === "Marvel Comics" ||
+            hero.biography.publisher === "DC Comics") &&
+          (hero.biography.alignment === "good" ||
+            hero.biography.alignment === "bad"),
       )
       .map((superhero) => ({
         id: superhero.id,
@@ -28,6 +30,7 @@ export const getSuperheroesByApi = async (): Promise<superhero[]> => {
           power: superhero.powerstats.power,
           combat: superhero.powerstats.combat,
         },
+        type: superhero.biography.alignment,
       }));
 
     return superheroesList;

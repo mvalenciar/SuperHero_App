@@ -1,4 +1,4 @@
-export interface superhero {
+export interface Superhero {
   id: number;
   name: string;
   fullname: string;
@@ -12,4 +12,5 @@ export interface superhero {
     power: number;
     combat: number;
   };
+  type: string;
 }

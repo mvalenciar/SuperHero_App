@@ -1,11 +1,11 @@
 //hooks
 import { useCallback, useState } from "react";
 //type and actions
-import type { superhero } from "../interfaces/superhero.interface";
+import type { Superhero } from "../interfaces/superhero.interface";
 import { getSuperheroesByApi } from "../actions/get-superheroes-by-api";
 
 export const useHeroes = () => {
-  const [heroes, setHeroes] = useState<superhero[]>([]);
+  const [heroes, setHeroes] = useState<Superhero[]>([]);
   const [loading, setLoading] = useState(true);
 
   //Función para cargar los héroes
@@ -38,7 +38,7 @@ export const useHeroes = () => {
   const searchHeroByTerm = (term: string) => {
     const heroesCache = localStorage.getItem("heroes");
     if (heroesCache) {
-      const customHeroes: superhero[] = JSON.parse(heroesCache);
+      const customHeroes: Superhero[] = JSON.parse(heroesCache);
       const filterHeroes = customHeroes.filter(
         (hero) =>
           hero.name.toLowerCase().includes(term.toLocaleLowerCase()) ||
