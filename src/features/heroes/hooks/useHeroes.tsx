@@ -8,6 +8,7 @@ export const useHeroes = () => {
   const [heroes, setHeroes] = useState<superhero[]>([]);
   const [loading, setLoading] = useState(true);
 
+  //Función para cargar los héroes
   const loadHeroes = useCallback(async () => {
     try {
       //1. Revisar Cache
@@ -33,6 +34,20 @@ export const useHeroes = () => {
       setLoading(false);
     }
   }, []);
+
+  const searchHeroByTerm = (term: string) => {
+    const heroesCache = localStorage.getItem("heroes");
+    if (heroesCache) {
+      const customHeroes: superhero[] = JSON.parse(heroesCache);
+      const filterHeroes = customHeroes.filter(
+        (hero) =>
+          hero.name.toLowerCase().includes(term.toLocaleLowerCase()) ||
+          hero.fullname.toLowerCase().includes(term.toLocaleLowerCase()),
+      );
+      setHeroes(filterHeroes);
+    }
+  };
+
   return {
     //values
     heroes,
@@ -40,5 +55,6 @@ export const useHeroes = () => {
 
     //action
     loadHeroes,
+    searchHeroByTerm,
   };
 };

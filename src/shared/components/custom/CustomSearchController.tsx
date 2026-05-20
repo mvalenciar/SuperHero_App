@@ -1,8 +1,19 @@
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Search } from "lucide-react";
+import { useState } from "react";
 
-export const CustomSearchController = () => {
+interface CustomSearchControllerProps {
+  placeholder: string;
+  onQuery: (term: string) => void;
+}
+
+export const CustomSearchController = ({
+  placeholder,
+  onQuery,
+}: CustomSearchControllerProps) => {
+  const [query, setQuery] = useState("");
+
   return (
     <div className="w-full max-w-md mx-auto mb-3">
       <div
@@ -23,13 +34,16 @@ export const CustomSearchController = () => {
           <Search className="ml-3 h-4 w-4 text-muted-foreground" />
 
           <Input
-            placeholder="Buscar héroes o villanos..."
+            placeholder={placeholder}
             className="
               border-0 
               focus-visible:ring-0 
               bg-transparent
               text-foreground
             "
+            onChange={(e) => {
+              setQuery(e.target.value);
+            }}
           />
 
           <Button
@@ -38,7 +52,9 @@ export const CustomSearchController = () => {
               bg-yellow-400 
               text-black 
               hover:bg-yellow-300
+              cursor-pointer
             "
+            onClick={() => onQuery(query)}
           >
             Buscar
           </Button>

@@ -29,7 +29,7 @@ export const HeroesGrid = ({ heroes, loading }: HeroesGridProps) => {
     changeToPrevPage,
   } = usePagination(heroes);
 
-  const { isFavorite, saveFavorite } = useContext(HeroesContext);
+  const { isFavorite, saveFavorite, searchHero } = useContext(HeroesContext);
 
   if (loading) {
     return (
@@ -40,7 +40,10 @@ export const HeroesGrid = ({ heroes, loading }: HeroesGridProps) => {
   }
   return (
     <>
-      <CustomSearchController />
+      <CustomSearchController
+        placeholder="Buscar héroes o villanos..."
+        onQuery={searchHero}
+      />
       <div className="grid grid-cols-1 md:grid-cols-3 place-items-center gap-3 p-2 min-h-150">
         {heroes.slice(startIndex, endIndex).map((hero) => (
           <HeroCard
