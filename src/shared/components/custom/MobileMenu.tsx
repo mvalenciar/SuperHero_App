@@ -35,7 +35,7 @@ export const MobileMenu = () => {
           </Link>
 
           <Link
-            to="/heroes"
+            to="/"
             className="
           text-white/80 text-lg py-2 px-3 rounded-md
           transition
@@ -48,7 +48,7 @@ export const MobileMenu = () => {
             Búsqueda Avanzada
           </Link>
           <Link
-            to="/heroes"
+            to="/favorites"
             className="
           text-white/80 text-lg py-2 px-3 rounded-md
           transition
