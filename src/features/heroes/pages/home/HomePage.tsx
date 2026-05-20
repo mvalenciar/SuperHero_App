@@ -14,7 +14,11 @@ export const HomePage = () => {
   return (
     <div>
       <Hero />
-      <CustomHeader />
+      <CustomHeader
+        title="Bienvenido a la Hero App"
+        description="Explora y conoce a fondo a héroes y villanos del universo de DC y
+        Marvel. Descubre sus poderes, historias y selecciona a tus favoritos."
+      />
       <HeroStats />
       <HeroesGrid heroes={heroes} loading={loading} />
     </div>

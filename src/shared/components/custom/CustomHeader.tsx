@@ -1,4 +1,9 @@
-export const CustomHeader = () => {
+interface CustomHeaderProps {
+  title: string;
+  description: string;
+}
+
+export const CustomHeader = ({ title, description }: CustomHeaderProps) => {
   return (
     <div
       className="
@@ -14,7 +19,8 @@ export const CustomHeader = () => {
         tracking-tight
       "
       >
-        Bienvenido a la <span className="text-amber-400">Hero App</span>
+        {/* Bienvenido a la <span className="text-amber-400">Hero App</span> */}
+        {title}
       </h1>
 
       <p
@@ -25,8 +31,9 @@ export const CustomHeader = () => {
         leading-relaxed
       "
       >
-        Explora y conoce a fondo a héroes y villanos del universo de DC y
-        Marvel. Descubre sus poderes, historias y selecciona a tus favoritos.
+        {/* Explora y conoce a fondo a héroes y villanos del universo de DC y
+        Marvel. Descubre sus poderes, historias y selecciona a tus favoritos. */}
+        {description}
       </p>
     </div>
   );
