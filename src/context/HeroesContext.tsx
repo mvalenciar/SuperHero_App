@@ -11,7 +11,6 @@ interface HeroesContextProps {
   //Methods
   isFavorite: (id: number) => boolean;
   saveFavorite: (id: number) => void;
-  searchHero: (term: string) => void;
 }
 
 export const HeroesContext = createContext<HeroesContextProps>(

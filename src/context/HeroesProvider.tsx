@@ -7,7 +7,7 @@ import { useFavorite } from "../features/heroes/hooks/useFavorite";
 import { HeroesContext } from "./HeroesContext";
 
 export const HeroesContextProvider = ({ children }: PropsWithChildren) => {
-  const { heroes, loading, loadHeroes, searchHeroByTerm } = useHeroes();
+  const { heroes, loading, loadHeroes } = useHeroes();
   const { favoriteHeroesId, isFavorite, saveFavoriteHero, showFavorites } =
     useFavorite();
 
@@ -61,12 +61,12 @@ export const HeroesContextProvider = ({ children }: PropsWithChildren) => {
       value={{
         //state
         heroes,
+
         loading,
         favoriteHeroesId,
         isFavorite,
         //methods
         saveFavorite: saveFavoriteHero,
-        searchHero: searchHeroByTerm,
       }}
     >
       {children}

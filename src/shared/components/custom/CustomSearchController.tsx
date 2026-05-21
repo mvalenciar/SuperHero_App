@@ -1,7 +1,7 @@
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useState, type KeyboardEvent } from "react";
 
 interface CustomSearchControllerProps {
   placeholder: string;
@@ -12,7 +12,15 @@ export const CustomSearchController = ({
   placeholder,
   onQuery,
 }: CustomSearchControllerProps) => {
+  //Estado del query term
   const [query, setQuery] = useState("");
+
+  //Evento Tecla Enter
+  const onKeyEnterPressed = (event: KeyboardEvent) => {
+    if (event.key !== "Enter") return;
+    onQuery(query.trim());
+    setQuery("");
+  };
 
   return (
     <div className="w-full max-w-md mx-auto mb-3">
@@ -34,6 +42,7 @@ export const CustomSearchController = ({
           <Search className="ml-3 h-4 w-4 text-muted-foreground" />
 
           <Input
+            value={query}
             placeholder={placeholder}
             className="
               border-0 
@@ -44,6 +53,7 @@ export const CustomSearchController = ({
             onChange={(e) => {
               setQuery(e.target.value);
             }}
+            onKeyDown={onKeyEnterPressed}
           />
 
           <Button
@@ -54,7 +64,10 @@ export const CustomSearchController = ({
               hover:bg-yellow-300
               cursor-pointer
             "
-            onClick={() => onQuery(query)}
+            onClick={() => {
+              onQuery(query.trim());
+              setQuery("");
+            }}
           >
             Buscar
           </Button>

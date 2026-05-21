@@ -1,5 +1,5 @@
 //Hooks
-import { useContext } from "react";
+import { useContext, useMemo, useState } from "react";
 import { HeroesContext } from "../../../../context/HeroesContext";
 
 //Components
@@ -7,9 +7,19 @@ import { CustomHeader } from "@/components/custom/CustomHeader";
 import { Hero } from "@/components/custom/Hero";
 import { HeroStats } from "../../components/HeroStats";
 import { HeroesGrid } from "../../components/HeroesGrid";
+import { CustomSearchController } from "@/components/custom/CustomSearchController";
 
 export const HomePage = () => {
   const { heroes, loading } = useContext(HeroesContext);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredHeroes = useMemo(() => {
+    if (!searchTerm.trim()) return heroes;
+
+    return heroes.filter((hero) =>
+      hero.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+  }, [heroes, searchTerm]);
 
   return (
     <div>
@@ -20,7 +30,11 @@ export const HomePage = () => {
         Marvel. Descubre sus poderes, historias y selecciona a tus favoritos."
       />
       <HeroStats />
-      <HeroesGrid heroes={heroes} loading={loading} />
+      <CustomSearchController
+        placeholder="Buscar héroes o villanos..."
+        onQuery={setSearchTerm}
+      />
+      <HeroesGrid heroes={filteredHeroes} loading={loading} />
     </div>
   );
 };
