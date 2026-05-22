@@ -7,10 +7,11 @@ import { CustomHeader } from "@/components/custom/CustomHeader";
 import { Hero } from "@/components/custom/Hero";
 import { HeroStats } from "../../components/HeroStats";
 import { HeroesGrid } from "../../components/HeroesGrid";
-import { SearchHeroSection } from "../../components/SearchHeroSection";
 import { SearchBar } from "@/components/custom/SearchBar";
+import { SearchHeroSection } from "../../components/SearchHeroSection";
+import { SearchFilters } from "@/components/custom/SearchFilters";
 
-export const HomePage = () => {
+export const SearchPage = () => {
   const { heroes, loading } = useContext(HeroesContext);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -28,20 +29,21 @@ export const HomePage = () => {
     <div>
       <Hero />
       <CustomHeader
-        title="Bienvenido a la Hero App"
-        description="Explora y conoce a fondo a héroes y villanos del universo de DC y
-        Marvel. Descubre sus poderes, historias y selecciona a tus favoritos."
+        title="Búsqueda Avanzada"
+        description="Encuentra a tus héroes mediante filtros avanzados, especificando su publisher DC o Marvel"
       />
       <HeroStats />
-
+      <SearchBar
+        placeholder="Buscar héroes o villanos..."
+        onQuery={setSearchTerm}
+      />
       <SearchHeroSection
         searchBar={
-          <SearchBar
-            placeholder="Buscar héroes o villanos..."
-            onQuery={setSearchTerm}
-          />
+          <SearchBar placeholder={"Buscar Héroes"} onQuery={setSearchTerm} />
         }
+        searchFilters={<SearchFilters />}
       />
+
       <HeroesGrid heroes={filteredHeroes} loading={loading} />
     </div>
   );

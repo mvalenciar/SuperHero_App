@@ -33,9 +33,9 @@ export const MobileMenu = () => {
           >
             Inicio
           </Link>
-
+          //Búsqueda Avanzada
           <Link
-            to="/"
+            to="/advancedSearch"
             className="
           text-white/80 text-lg py-2 px-3 rounded-md
           transition

@@ -42,7 +42,7 @@ export const MenuBar = () => {
               px-4 py-2 rounded-md text-sm font-medium text-white/80 transition-all duration-200 hover:text-white hover:bg-linear-to-r hover:from-amber-500/20 hover:to-red-500/20 hover:shadow-[0_0_10px_rgba(251,191,36,0.4)] focus:outline-none focus:bg-amber-500/20
               "
               >
-                <Link to={"/"}>Búsqueda Avanzada</Link>
+                <Link to={"/advancedSearch"}>Búsqueda Avanzada</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
 

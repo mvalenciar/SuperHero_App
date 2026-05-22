@@ -6,15 +6,11 @@ import { HeroesContext } from "../../../../context/HeroesContext";
 import { HeroStats } from "../../components/HeroStats";
 import { HeroesGrid } from "../../components/HeroesGrid";
 import { CustomHeader } from "@/components/custom/CustomHeader";
-import { CustomSearchController } from "@/components/custom/CustomSearchController";
+import { SearchBar } from "@/components/custom/SearchBar";
+import { SearchHeroSection } from "../../components/SearchHeroSection";
 
 export const FavoritesPage = () => {
   const { heroes, loading, favoriteHeroesId } = useContext(HeroesContext);
-
-  // const loadSuperheroesFavorites = useMemo(
-  //   () => heroes.filter((hero) => favoriteHeroesId.includes(hero.id)),
-  //   [favoriteHeroesId, heroes],
-  // );
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -36,9 +32,10 @@ export const FavoritesPage = () => {
         description="Explora y conoce a fondo a héroes y villanos favoritos"
       />
       <HeroStats />
-      <CustomSearchController
-        onQuery={setSearchTerm}
-        placeholder="Buscar favorito..."
+      <SearchHeroSection
+        searchBar={
+          <SearchBar placeholder="Buscar favorito..." onQuery={setSearchTerm} />
+        }
       />
       <HeroesGrid heroes={filteredHeroes} loading={loading} />
     </div>

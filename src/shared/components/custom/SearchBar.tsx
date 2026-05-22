@@ -8,7 +8,7 @@ interface CustomSearchControllerProps {
   onQuery: (term: string) => void;
 }
 
-export const CustomSearchController = ({
+export const SearchBar = ({
   placeholder,
   onQuery,
 }: CustomSearchControllerProps) => {

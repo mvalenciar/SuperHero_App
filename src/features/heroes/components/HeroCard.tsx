@@ -1,5 +1,8 @@
 //hooks
-import { useState } from "react";
+import { useContext, useState } from "react";
+
+//Contexto
+import { HeroesContext } from "../../../context/HeroesContext";
 
 //Components
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,35 +13,17 @@ import { Spinner } from "@/components/ui/spinner";
 //Action and types
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import type { Superhero } from "../interfaces/superhero.interface";
 
 interface HeroCardProps {
-  name: string;
-  fullname: string;
-  image: string;
-  publisher: string | null;
-  stats: {
-    power: number;
-    strength: number;
-    speed: number;
-    intelligence: number;
-  };
-  favorite: boolean;
-  saveFavorite: () => void;
+  hero: Superhero;
 }
 
-export const HeroCard = ({
-  name,
-  fullname,
-  image,
-  publisher,
-  stats,
-  favorite,
-  saveFavorite,
-}: HeroCardProps) => {
+export const HeroCard = ({ hero }: HeroCardProps) => {
   const [loadedImage, setLoadedImage] = useState("");
+  const { isFavorite, saveFavorite } = useContext(HeroesContext);
 
-  const imageLoaded = loadedImage === image;
-
+  const imageLoaded = loadedImage === hero.image;
   return (
     <Card
       className={cn(
@@ -61,12 +46,12 @@ export const HeroCard = ({
         )}
 
         <img
-          key={image}
-          src={image}
-          alt={name}
+          key={hero.image}
+          src={hero.image}
+          alt={hero.name}
           loading="lazy"
-          onLoad={() => setLoadedImage(image)}
-          onError={() => setLoadedImage(image)}
+          onLoad={() => setLoadedImage(hero.image)}
+          onError={() => setLoadedImage(hero.image)}
           className={cn(
             "w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105",
             imageLoaded ? "opacity-100" : "opacity-0",
@@ -80,12 +65,12 @@ export const HeroCard = ({
 
           <Button
             className="bg-white rounded-md shadow-md p-0 size-10 cursor-pointer"
-            onClick={saveFavorite}
+            onClick={() => saveFavorite(hero.id)}
           >
             <Heart
               className={cn(
                 "size-8 cursor-pointer transition-all duration-300 active:scale-125",
-                favorite
+                isFavorite(hero.id)
                   ? "text-rose-500 fill-rose-500 scale-110"
                   : "text-muted-foreground hover:scale-110",
               )}
@@ -93,17 +78,17 @@ export const HeroCard = ({
           </Button>
           {/* Power badge */}
           <div className="bg-amber-500/90 text-zinc-950 font-semibold border-0 backdrop-blur-sm rounded-full p-2 text-xl size-12 flex justify-center items-center">
-            {stats.power}
+            {hero.stats.power}
           </div>
         </div>
 
         {/* Hero name overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-1">
-            {fullname === "" ? `${name}` : `${fullname}`}
+            {hero.fullname === "" ? `${hero.name}` : `${hero.fullname}`}
           </p>
           <h2 className="text-3xl font-bold text-white tracking-tight">
-            {name}
+            {hero.name}
           </h2>
         </div>
       </div>
@@ -111,9 +96,9 @@ export const HeroCard = ({
       <CardContent className="relative space-y-5 pt-2">
         {/* Stats */}
         <div className="space-y-3 pt-2">
-          <HeroStatBar stat="Fuerza" value={stats.strength} />
-          <HeroStatBar stat="Velocidad" value={stats.speed} />
-          <HeroStatBar stat="Inteligencia" value={stats.intelligence} />
+          <HeroStatBar stat="Fuerza" value={hero.stats.strength} />
+          <HeroStatBar stat="Velocidad" value={hero.stats.speed} />
+          <HeroStatBar stat="Inteligencia" value={hero.stats.intelligence} />
         </div>
 
         {/* Publisher Logo watermark */}
@@ -123,7 +108,7 @@ export const HeroCard = ({
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
             </svg>
             <span className="text-xs font-medium tracking-wider uppercase">
-              {publisher}
+              {hero.publisher}
             </span>
           </div>
         </div>
