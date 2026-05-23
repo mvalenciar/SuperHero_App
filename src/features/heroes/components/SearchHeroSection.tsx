@@ -1,15 +1,6 @@
 interface SearchHeroSectionProps {
-  searchBar: React.ReactNode;
-  searchFilters?: React.ReactNode;
+  children: React.ReactNode;
 }
-export const SearchHeroSection = ({
-  searchBar,
-  searchFilters,
-}: SearchHeroSectionProps) => {
-  return (
-    <>
-      {searchBar}
-      {searchFilters}
-    </>
-  );
+export const SearchHeroSection = ({ children }: SearchHeroSectionProps) => {
+  return <>{children}</>;
 };

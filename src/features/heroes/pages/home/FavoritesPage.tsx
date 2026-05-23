@@ -8,6 +8,7 @@ import { HeroesGrid } from "../../components/HeroesGrid";
 import { CustomHeader } from "@/components/custom/CustomHeader";
 import { SearchBar } from "@/components/custom/SearchBar";
 import { SearchHeroSection } from "../../components/SearchHeroSection";
+import { HeroesDisplaySection } from "../../components/HeroesDisplaySection";
 
 export const FavoritesPage = () => {
   const { heroes, loading, favoriteHeroesId } = useContext(HeroesContext);
@@ -32,12 +33,12 @@ export const FavoritesPage = () => {
         description="Explora y conoce a fondo a héroes y villanos favoritos"
       />
       <HeroStats />
-      <SearchHeroSection
-        searchBar={
-          <SearchBar placeholder="Buscar favorito..." onQuery={setSearchTerm} />
-        }
-      />
-      <HeroesGrid heroes={filteredHeroes} loading={loading} />
+      <SearchHeroSection>
+        <SearchBar placeholder="Buscar favorito..." onQuery={setSearchTerm} />
+      </SearchHeroSection>
+      <HeroesDisplaySection heroes={filteredHeroes} loading={loading}>
+        <HeroesGrid heroes={filteredHeroes} />
+      </HeroesDisplaySection>
     </div>
   );
 };

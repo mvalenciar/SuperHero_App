@@ -6,9 +6,10 @@ import { HeroesContext } from "../../../../context/HeroesContext";
 import { CustomHeader } from "@/components/custom/CustomHeader";
 import { Hero } from "@/components/custom/Hero";
 import { HeroStats } from "../../components/HeroStats";
-import { HeroesGrid } from "../../components/HeroesGrid";
 import { SearchHeroSection } from "../../components/SearchHeroSection";
 import { SearchBar } from "@/components/custom/SearchBar";
+import { HeroesDisplaySection } from "../../components/HeroesDisplaySection";
+import { HeroesGrid } from "../../components/HeroesGrid";
 
 export const HomePage = () => {
   const { heroes, loading } = useContext(HeroesContext);
@@ -34,15 +35,15 @@ export const HomePage = () => {
       />
       <HeroStats />
 
-      <SearchHeroSection
-        searchBar={
-          <SearchBar
-            placeholder="Buscar héroes o villanos..."
-            onQuery={setSearchTerm}
-          />
-        }
-      />
-      <HeroesGrid heroes={filteredHeroes} loading={loading} />
+      <SearchHeroSection>
+        <SearchBar
+          placeholder="Buscar héroes o villanos..."
+          onQuery={setSearchTerm}
+        />
+      </SearchHeroSection>
+      <HeroesDisplaySection heroes={filteredHeroes} loading={loading}>
+        <HeroesGrid heroes={filteredHeroes} />
+      </HeroesDisplaySection>
     </div>
   );
 };

@@ -4,12 +4,12 @@ import { HeroesContext } from "../../../../context/HeroesContext";
 
 //Components
 import { CustomHeader } from "@/components/custom/CustomHeader";
-import { Hero } from "@/components/custom/Hero";
 import { HeroStats } from "../../components/HeroStats";
 import { HeroesGrid } from "../../components/HeroesGrid";
 import { SearchBar } from "@/components/custom/SearchBar";
 import { SearchHeroSection } from "../../components/SearchHeroSection";
 import { SearchFilters } from "@/components/custom/SearchFilters";
+import { HeroesDisplaySection } from "../../components/HeroesDisplaySection";
 
 export const SearchPage = () => {
   const { heroes, loading } = useContext(HeroesContext);
@@ -26,25 +26,19 @@ export const SearchPage = () => {
   }, [heroes, searchTerm]);
 
   return (
-    <div>
-      <Hero />
+    <div className="mt-16">
       <CustomHeader
         title="Búsqueda Avanzada"
         description="Encuentra a tus héroes mediante filtros avanzados, especificando su publisher DC o Marvel"
       />
       <HeroStats />
-      <SearchBar
-        placeholder="Buscar héroes o villanos..."
-        onQuery={setSearchTerm}
-      />
-      <SearchHeroSection
-        searchBar={
-          <SearchBar placeholder={"Buscar Héroes"} onQuery={setSearchTerm} />
-        }
-        searchFilters={<SearchFilters />}
-      />
-
-      <HeroesGrid heroes={filteredHeroes} loading={loading} />
+      <SearchHeroSection>
+        <SearchBar placeholder={"Buscar Héroes"} onQuery={setSearchTerm} />
+        <SearchFilters />
+      </SearchHeroSection>
+      <HeroesDisplaySection heroes={filteredHeroes} loading={loading}>
+        <HeroesGrid heroes={filteredHeroes} />
+      </HeroesDisplaySection>
     </div>
   );
 };
