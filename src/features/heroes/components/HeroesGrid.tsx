@@ -26,7 +26,7 @@ export const HeroesGrid = ({ heroes }: HeroesGridProps) => {
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 place-items-center gap-3 p-2 min-h-[600px]">
         {heroes.slice(startIndex, endIndex).map((hero) => (
-          <HeroCard hero={hero} />
+          <HeroCard key={hero.id} hero={hero} />
         ))}
       </div>
       <HeroPaginationController

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Superhero } from "../interfaces/superhero.interface";
 
 export const usePagination = (heroes: Superhero[]) => {
@@ -7,6 +7,11 @@ export const usePagination = (heroes: Superhero[]) => {
   const totalPages = Math.max(1, Math.ceil(heroes.length / itemsPerPage));
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = itemsPerPage * currentPage;
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCurrentPage(1);
+  }, [heroes]);
 
   const changeToNextPage = () => {
     if (currentPage === totalPages) return;
