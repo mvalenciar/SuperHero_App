@@ -33,7 +33,7 @@ export const useFavorite = () => {
       return;
     }
     //5. Si el héroe no existe
-    const updatedFavorite = [...currentFavorites, id];
+    const updatedFavorite = [id, ...currentFavorites];
     //5.1. Actualizar el estado
     setFavoriteHeroesId(updatedFavorite);
     //5.2. Guardar en cache

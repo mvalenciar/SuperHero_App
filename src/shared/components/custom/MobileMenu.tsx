@@ -33,7 +33,6 @@ export const MobileMenu = () => {
           >
             Inicio
           </Link>
-          //Búsqueda Avanzada
           <Link
             to="/advancedSearch"
             className="

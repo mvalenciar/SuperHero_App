@@ -12,18 +12,20 @@ import { HeroesDisplaySection } from "../../components/HeroesDisplaySection";
 
 export const FavoritesPage = () => {
   const { heroes, loading, favoriteHeroesId } = useContext(HeroesContext);
-
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredHeroes = useMemo(() => {
-    if (!searchTerm.trim())
-      return heroes.filter((hero) => favoriteHeroesId.includes(hero.id));
+    const orderedFavorites = favoriteHeroesId
+      .map((id) => heroes.find((hero) => hero.id === id))
+      .filter((hero) => hero !== undefined);
+    if (!searchTerm.trim()) {
+      return orderedFavorites;
+    }
 
-    return heroes.filter(
-      (hero) =>
-        hero.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        favoriteHeroesId.includes(hero.id),
+    return orderedFavorites.filter((hero) =>
+      hero.name.toLowerCase().includes(searchTerm.toLowerCase()),
     );
+    //
   }, [heroes, searchTerm, favoriteHeroesId]);
 
   return (
