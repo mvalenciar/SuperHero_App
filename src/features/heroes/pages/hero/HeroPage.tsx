@@ -1,13 +1,82 @@
-import { useContext } from "react";
+//Hooks
+import { useContext, useState } from "react";
+
+//Context
 import { HeroesContext } from "../../../../context/HeroesContext";
-import { useParams } from "react-router";
+
+//Components
 import { HeroStatBar } from "../../components/HeroStatBar";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
+import { ArrowBigLeft, ArrowBigRight, ArrowBigUp } from "lucide-react";
+
+//Action and Types
+import { useLocation, useNavigate, useParams } from "react-router";
+import { cn } from "@/lib/utils";
+import type { Superhero } from "../../interfaces/superhero.interface";
+import type { HeroLocationState } from "../../interfaces/heroLocationState.interface";
 
 export const HeroPage = () => {
+  // Guarda la URL de la última imagen cargada correctamente.
+  // Se usa para determinar cuándo mostrar el skeleton/loading.
+  const [loadedImage, setLoadedImage] = useState("");
+
+  // Obtiene la lista global de héroes desde el contexto.
   const { heroes } = useContext(HeroesContext);
+
+  // URL PARAMS
+  // Obtiene el slug dinámico de la URL.
+  // Ejemplo: /hero/270-franklin-storm
   const { idSlug } = useParams();
 
-  const hero = heroes.find((hero) => hero.slug === idSlug);
+  // REACT ROUTER HOOKS
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // LOCATION STATE
+  // Obtiene el estado enviado desde navigate(...)
+  // Puede venir null si el usuario refresca la página
+  // o entra directamente desde la URL.
+  const state = (location.state as HeroLocationState) || null;
+
+  // heroState -> héroe enviado desde la navegación
+  // from -> página desde donde se abrió el HeroPage
+  const heroState = state?.hero;
+  const from = state?.from;
+
+  // Primero intenta usar el héroe enviado por navigation state.
+  // Si no existe (refresh/direct URL), busca el héroe usando el slug.
+  const hero: Superhero | undefined =
+    heroState || heroes.find((hero) => hero.slug === idSlug);
+
+  // Determina si la imagen actual ya terminó de cargar.
+  const imageLoaded = loadedImage === hero?.image;
+
+  // Navega a la página anterior.
+  // Si no existe una página previa, vuelve al home.
+  const handleBack = (page?: string) => {
+    navigate(page || "/");
+  };
+
+  // Obtiene la posición actual del héroe dentro del array.
+  // Se usa para navegar entre héroes consecutivos.
+  const currentIndex = heroes.findIndex((hero) => hero.slug === idSlug);
+
+  // Obtiene el héroe anterior y siguiente según el índice actual.
+  const previousHero = heroes[currentIndex - 1];
+  const nextHero = heroes[currentIndex + 1];
+
+  // Navega al detalle de otro héroe manteniendo:
+  // - el estado del héroe
+  // - la página de origen
+  const handleHeroNavigation = (hero: Superhero) => {
+    navigate(`/hero/${hero.slug}`, {
+      state: {
+        hero,
+        from,
+      },
+    });
+  };
 
   if (!hero) {
     return (
@@ -22,20 +91,53 @@ export const HeroPage = () => {
       <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* IMAGE */}
-          <div className="flex justify-center">
-            <img
-              src={hero.image}
-              alt={`imagen de ${hero.name}`}
-              className="
-                w-full
-                max-w-md
-                rounded-3xl
-                shadow-2xl
-                object-cover
-                border
-                border-zinc-800
-              "
-            />
+          <div className="flex flex-col justify-center items-center gap-3">
+            <div className="relative w-full max-w-md h-[700px]">
+              {/* SKELETON */}
+              {!imageLoaded && (
+                <div className="absolute inset-0 flex justify-center items-center rounded-3xl border border-zinc-800 bg-zinc-900 animate-pulse overflow-hidden">
+                  <Spinner className="size-14" />
+                </div>
+              )}
+              <img
+                src={hero.image}
+                alt={`imagen de ${hero.name}`}
+                loading="lazy"
+                onLoad={() => setLoadedImage(hero.image)}
+                onError={() => setLoadedImage(hero.image)}
+                className={cn(
+                  "w-full h-full rounded-3xl shadow-2xl object-cover border border-zinc-800 transition-opacity duration-300",
+                  imageLoaded ? "opacity-100" : "opacity-0",
+                )}
+              />
+            </div>
+            {/* NAVIGATION CONTROLLER */}
+            <div className="flex gap-3">
+              {previousHero && (
+                <Button
+                  className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
+                  onClick={() => handleHeroNavigation(previousHero)}
+                >
+                  <ArrowBigLeft />
+                </Button>
+              )}
+
+              <Button
+                onClick={() => handleBack(from)}
+                className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
+              >
+                <ArrowBigUp />
+              </Button>
+
+              {nextHero && (
+                <Button
+                  className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
+                  onClick={() => handleHeroNavigation(nextHero)}
+                >
+                  <ArrowBigRight />
+                </Button>
+              )}
+            </div>
           </div>
 
           {/* CONTENT */}
@@ -62,7 +164,7 @@ export const HeroPage = () => {
               </h1>
 
               <h2 className="text-xl text-zinc-400 font-medium">
-                {hero.fullname}
+                {hero.fullname?.toUpperCase() || hero.name.toUpperCase()}
               </h2>
             </div>
 
@@ -132,6 +234,33 @@ export const HeroPage = () => {
                   {hero.groupAffiliation}
                 </p>
               </div>
+
+              {/* <div className="flex gap-3">
+                {previousHero && (
+                  <Button
+                    className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
+                    onClick={() => handleHeroNavigation(previousHero)}
+                  >
+                    <ArrowBigLeft />
+                  </Button>
+                )}
+
+                <Button
+                  onClick={() => handleBack(from)}
+                  className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
+                >
+                  <ArrowBigUp />
+                </Button>
+
+                {nextHero && (
+                  <Button
+                    className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
+                    onClick={() => handleHeroNavigation(nextHero)}
+                  >
+                    <ArrowBigRight />
+                  </Button>
+                )}
+              </div> */}
             </div>
           </div>
         </div>

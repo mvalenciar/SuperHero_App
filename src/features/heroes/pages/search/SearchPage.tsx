@@ -47,7 +47,7 @@ export const SearchPage = () => {
         />
       </SearchHeroSection>
       <HeroesDisplaySection heroes={filteredHeroes} loading={loading}>
-        <HeroesGrid heroes={filteredHeroes} />
+        <HeroesGrid heroes={filteredHeroes} from="/advancedSearch" />
       </HeroesDisplaySection>
     </div>
   );

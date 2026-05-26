@@ -42,7 +42,7 @@ export const HomePage = () => {
         />
       </SearchHeroSection>
       <HeroesDisplaySection heroes={filteredHeroes} loading={loading}>
-        <HeroesGrid heroes={filteredHeroes} />
+        <HeroesGrid heroes={filteredHeroes} from="/" />
       </HeroesDisplaySection>
     </div>
   );

@@ -15,12 +15,14 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import type { Superhero } from "../interfaces/superhero.interface";
 import { useNavigate } from "react-router";
+import type { HeroNavigationFrom } from "../interfaces/heroNavigationFrom.type";
 
 interface HeroCardProps {
   hero: Superhero;
+  from: HeroNavigationFrom;
 }
 
-export const HeroCard = ({ hero }: HeroCardProps) => {
+export const HeroCard = ({ hero, from }: HeroCardProps) => {
   const [loadedImage, setLoadedImage] = useState("");
   const { isFavorite, saveFavorite } = useContext(HeroesContext);
 
@@ -29,7 +31,12 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
   const navigate = useNavigate();
 
   const handleHeroCardClick = () => {
-    navigate(`/hero/${hero.slug}`);
+    navigate(`/hero/${hero.slug}`, {
+      state: {
+        hero,
+        from,
+      },
+    });
   };
 
   return (
@@ -47,7 +54,7 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
       <div className="absolute inset-0 bg-linear-to-br from-amber-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       {/* Hero Image */}
-      <div className="relative h-72 overflow-hidden bg-amber-200">
+      <div className="relative h-72 overflow-hidden bg-amber-200 ">
         {/* Skeleton */}
         {!imageLoaded && (
           <div className="absolute inset-0 bg-zinc-700 flex justify-center items-center">
@@ -75,7 +82,10 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
 
           <Button
             className="bg-white rounded-md shadow-md p-0 size-10 cursor-pointer"
-            onClick={() => saveFavorite(hero.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              saveFavorite(hero.id);
+            }}
           >
             <Heart
               className={cn(

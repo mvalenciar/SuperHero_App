@@ -39,7 +39,7 @@ export const FavoritesPage = () => {
         <SearchBar placeholder="Buscar favorito..." onQuery={setSearchTerm} />
       </SearchHeroSection>
       <HeroesDisplaySection heroes={filteredHeroes} loading={loading}>
-        <HeroesGrid heroes={filteredHeroes} />
+        <HeroesGrid heroes={filteredHeroes} from="/favorites" />
       </HeroesDisplaySection>
     </div>
   );
