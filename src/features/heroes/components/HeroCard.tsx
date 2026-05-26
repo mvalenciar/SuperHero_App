@@ -14,6 +14,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import type { Superhero } from "../interfaces/superhero.interface";
+import { useNavigate } from "react-router";
 
 interface HeroCardProps {
   hero: Superhero;
@@ -24,6 +25,13 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
   const { isFavorite, saveFavorite } = useContext(HeroesContext);
 
   const imageLoaded = loadedImage === hero.image;
+
+  const navigate = useNavigate();
+
+  const handleHeroCardClick = () => {
+    navigate(`/hero/${hero.slug}`);
+  };
+
   return (
     <Card
       className={cn(
@@ -31,7 +39,9 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
         "bg-zinc-950 border-zinc-800/50",
         "hover:border-amber-500/30 transition-all duration-500",
         "shadow-2xl shadow-zinc-950/50",
+        "cursor-pointer",
       )}
+      onClick={handleHeroCardClick}
     >
       {/* Glow effect */}
       <div className="absolute inset-0 bg-linear-to-br from-amber-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

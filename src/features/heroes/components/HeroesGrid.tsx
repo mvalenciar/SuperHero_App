@@ -20,6 +20,7 @@ export const HeroesGrid = ({ heroes }: HeroesGridProps) => {
     currentPage,
     changeToNextPage,
     changeToPrevPage,
+    setCurrentPage,
   } = usePagination(heroes);
 
   return (
@@ -35,6 +36,7 @@ export const HeroesGrid = ({ heroes }: HeroesGridProps) => {
         pagesPerGroup={5}
         nextPage={changeToNextPage}
         prevPage={changeToPrevPage}
+        setPage={setCurrentPage}
       />
     </>
   );

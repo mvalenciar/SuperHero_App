@@ -1,3 +1,4 @@
+import { Footer } from "@/components/custom/Footer";
 import { MenuBar } from "@/components/custom/MenuBar";
 import { Outlet } from "react-router";
 
@@ -11,6 +12,7 @@ export const HeroLayout = () => {
       <MenuBar />
 
       <Outlet />
+      <Footer />
     </div>
   );
 };

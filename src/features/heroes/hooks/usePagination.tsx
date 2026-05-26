@@ -31,5 +31,6 @@ export const usePagination = (heroes: Superhero[]) => {
     //actions
     changeToNextPage,
     changeToPrevPage,
+    setCurrentPage,
   };
 };

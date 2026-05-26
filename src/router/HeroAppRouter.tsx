@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router";
 import { HeroLayout } from "../features/heroes/layout/HeroLayout";
 import { HomePage } from "../features/heroes/pages/home/HomePage";
-import { FavoritesPage } from "../features/heroes/pages/home/FavoritesPage";
-import { SearchPage } from "../features/heroes/pages/home/SearchPage";
+import { FavoritesPage } from "../features/heroes/pages/favorites/FavoritesPage";
+import { SearchPage } from "../features/heroes/pages/search/SearchPage";
+import { HeroPage } from "../features/heroes/pages/hero/HeroPage";
 
 export const HeroAppRouter = createBrowserRouter([
   {
@@ -14,12 +15,16 @@ export const HeroAppRouter = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "favorites",
-        element: <FavoritesPage />,
+        path: "/hero/:idSlug",
+        element: <HeroPage />,
       },
       {
         path: "advancedSearch",
         element: <SearchPage />,
+      },
+      {
+        path: "favorites",
+        element: <FavoritesPage />,
       },
     ],
   },

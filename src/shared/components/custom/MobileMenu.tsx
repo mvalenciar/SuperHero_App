@@ -1,5 +1,12 @@
 import { Link } from "react-router";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
 
 export const MobileMenu = () => {
   return (
@@ -19,7 +26,15 @@ export const MobileMenu = () => {
         side="right"
         className="bg-slate-900 text-white border-white/10"
       >
-        <div className="flex flex-col gap-4 mt-10 px-4">
+        <SheetHeader>
+          <SheetTitle>
+            <h3 className="text-lg font-bold text-white">Navegación</h3>
+          </SheetTitle>
+          <SheetDescription className="hidden">
+            Menu de navegación
+          </SheetDescription>
+        </SheetHeader>
+        <div className="flex flex-col gap-4 px-4">
           <Link
             to="/"
             className="

@@ -14,6 +14,7 @@ interface HeroPaginationControllerProps {
   pagesPerGroup: number;
   nextPage: () => void;
   prevPage: () => void;
+  setPage: (page: number) => void;
 }
 
 export const HeroPaginationController = ({
@@ -22,6 +23,7 @@ export const HeroPaginationController = ({
   pagesPerGroup,
   nextPage,
   prevPage,
+  setPage,
 }: HeroPaginationControllerProps) => {
   // ---
   const group = Math.floor((currentPage - 1) / pagesPerGroup);
@@ -39,7 +41,7 @@ export const HeroPaginationController = ({
         <PaginationContent className="gap-2">
           <PaginationItem>
             <PaginationPrevious
-              className="transition-all hover:bg-primary hover:text-primary-foreground"
+              className="transition-all hover:bg-primary hover:text-primary-foreground cursor-pointer"
               onClick={prevPage}
             />
           </PaginationItem>
@@ -55,13 +57,14 @@ export const HeroPaginationController = ({
                 className={`
                 w-10 h-10 flex items-center justify-center
                 rounded-xl font-semibold
-                transition-all duration-200
+                transition-all duration-200 cursor-pointer
                 ${
                   page === currentPage
                     ? "bg-primary text-primary-foreground shadow-md scale-105"
                     : "bg-muted/40 text-foreground hover:bg-primary hover:text-primary-foreground"
                 }
               `}
+                onClick={() => setPage(page)}
               >
                 {page}
               </PaginationLink>
@@ -75,7 +78,7 @@ export const HeroPaginationController = ({
 
           <PaginationItem>
             <PaginationNext
-              className="transition-all hover:bg-primary hover:text-primary-foreground"
+              className="transition-all hover:bg-primary hover:text-primary-foreground cursor-pointer"
               onClick={nextPage}
             />
           </PaginationItem>
