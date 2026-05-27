@@ -1,5 +1,5 @@
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
@@ -11,6 +11,11 @@ export default defineConfig({
     babel({ presets: [reactCompilerPreset()] }),
     tailwindcss(),
   ],
+  test: {
+    globals: true, // Permite usar funciones como describe y test sin importarlas
+    environment: "jsdom", // Simula el DOM del navegador
+    setupFiles: "./src/setupTests.ts", // Archivo de configuración inicial
+  },
   resolve: {
     alias: [
       {
