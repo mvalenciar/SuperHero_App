@@ -16,6 +16,7 @@ export const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [publisherFilter, setPublisherFilter] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
+  const [genderFilter, setGenderFilter] = useState("");
 
   const filteredHeroes = useMemo(() => {
     return heroes.filter(
@@ -28,9 +29,11 @@ export const SearchPage = () => {
             ?.toLowerCase()
             .includes(publisherFilter.toLowerCase())) &&
         (!typeFilter ||
-          hero.type?.toLowerCase().includes(typeFilter.toLowerCase())),
+          hero.type?.toLowerCase().includes(typeFilter.toLowerCase())) &&
+        (!genderFilter ||
+          hero.gender?.toLowerCase().includes(genderFilter.toLowerCase())),
     );
-  }, [heroes, searchTerm, publisherFilter, typeFilter]);
+  }, [heroes, searchTerm, publisherFilter, typeFilter, genderFilter]);
 
   return (
     <div className="mt-16">
@@ -44,6 +47,7 @@ export const SearchPage = () => {
         <SearchFilters
           onPublisherFilter={setPublisherFilter}
           onTypeFilter={setTypeFilter}
+          onGenderFilter={setGenderFilter}
         />
       </SearchHeroSection>
       <HeroesDisplaySection heroes={filteredHeroes} loading={loading}>
