@@ -180,33 +180,15 @@ para mejorar la experiencia de usuario.
 
 > Vista principal del sistema en pantallas grandes
 
-<p align="center">
-  <img src="./public/images/screenshot/desktop/desktop-hero.png" width="700" />
-</p>
-
-<p align="center">
-  <img src="./public/images/screenshot/desktop/desktop-home.png" width="700" />
-</p>
-
-<p align="center">
-  <img src="./public/images/screenshot/desktop/desktop-grid.png" width="700" />
-</p>
-
-<p align="center">
-  <img src="./public/images/screenshot/desktop/desktop-footer.png" width="700" />
-</p>
-
-<p align="center">
-  <img src="./public/images/screenshot/desktop/desktop-advanceSearch.png" width="700" />
-</p>
-
-<p align="center">
-  <img src="./public/images/screenshot/desktop/desktop-favorites.png" width="700" />
-</p>
-
-<p align="center">
-  <img src="./public/images/screenshot/desktop/desktop-detail.png.png" width="700" />
-</p>
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+  <img src="./public/images/screenshot/desktop/desktop-hero.png" />
+  <img src="./public/images/screenshot/desktop/desktop-home.png"/>
+  <img src="./public/images/screenshot/desktop/desktop-grid.png" />
+  <img src="./public/images/screenshot/desktop/desktop-footer.png" />
+  <img src="./public/images/screenshot/desktop/desktop-advanceSearch.png" />
+  <img src="./public/images/screenshot/desktop/desktop-favorites.png" />
+  <img src="./public/images/screenshot/desktop/desktop-detail.png" />
+</div>
 
 ### 📱 Mobile
 
