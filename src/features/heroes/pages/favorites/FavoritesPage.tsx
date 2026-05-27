@@ -14,6 +14,7 @@ export const FavoritesPage = () => {
   const { heroes, loading, favoriteHeroesId } = useContext(HeroesContext);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Mantiene el orden original en que el usuario agregó favoritos
   const filteredHeroes = useMemo(() => {
     const orderedFavorites = favoriteHeroesId
       .map((id) => heroes.find((hero) => hero.id === id))
@@ -22,18 +23,21 @@ export const FavoritesPage = () => {
       return orderedFavorites;
     }
 
-    return orderedFavorites.filter((hero) =>
-      hero.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    return orderedFavorites.filter(
+      (hero) =>
+        hero.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        hero.fullname?.toLowerCase().includes(searchTerm.toLowerCase()),
     );
-    //
   }, [heroes, searchTerm, favoriteHeroesId]);
 
   return (
-    <div className="mt-16">
-      <CustomHeader
-        title="Favorites"
-        description="Explora y conoce a fondo a héroes y villanos favoritos"
-      />
+    <section className="mt-16">
+      <header>
+        <CustomHeader
+          title="Mis Favoritos"
+          description="Explora y conoce a fondo a héroes y villanos favoritos"
+        />
+      </header>
       <HeroStats />
       <SearchHeroSection>
         <SearchBar placeholder="Buscar favorito..." onQuery={setSearchTerm} />
@@ -41,6 +45,6 @@ export const FavoritesPage = () => {
       <HeroesDisplaySection heroes={filteredHeroes} loading={loading}>
         <HeroesGrid heroes={filteredHeroes} from="/favorites" />
       </HeroesDisplaySection>
-    </div>
+    </section>
   );
 };

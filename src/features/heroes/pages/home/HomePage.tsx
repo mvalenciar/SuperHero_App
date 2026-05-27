@@ -26,13 +26,16 @@ export const HomePage = () => {
   }, [heroes, searchTerm]);
 
   return (
-    <div>
-      <Hero />
-      <CustomHeader
-        title="Bienvenido a la Hero App"
-        description="Explora y conoce a fondo a héroes y villanos del universo de DC y
+    <section>
+      <header>
+        <Hero />
+        <CustomHeader
+          title="Bienvenido a la Hero App"
+          description="Explora y conoce a fondo a héroes y villanos del universo de DC y
         Marvel. Descubre sus poderes, historias y selecciona a tus favoritos."
-      />
+        />
+      </header>
+
       <HeroStats />
 
       <SearchHeroSection>
@@ -44,6 +47,6 @@ export const HomePage = () => {
       <HeroesDisplaySection heroes={filteredHeroes} loading={loading}>
         <HeroesGrid heroes={filteredHeroes} from="/" />
       </HeroesDisplaySection>
-    </div>
+    </section>
   );
 };

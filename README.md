@@ -176,7 +176,9 @@ para mejorar la experiencia de usuario.
 
 # 📸 Preview
 
-Agrega aquí screenshots o gifs de la aplicación.
+### 🖥️ Desktop
+
+![Desktop view](./images/screenshot/desktop/desktop-hero.webp)
 
 ---
 

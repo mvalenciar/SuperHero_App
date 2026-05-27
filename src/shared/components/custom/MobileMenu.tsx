@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import logo from "/images/logo_app.png";
 import {
   Sheet,
   SheetContent,
@@ -27,7 +28,12 @@ export const MobileMenu = () => {
         className="bg-slate-900 text-white border-white/10"
       >
         <SheetHeader>
-          <SheetTitle>
+          <SheetTitle className="flex items-center gap-2">
+            <img
+              src={logo}
+              className="w-20"
+              alt="logo pequeño de la hero app"
+            />
             <h3 className="text-lg font-bold text-white">Navegación</h3>
           </SheetTitle>
           <SheetDescription className="hidden">

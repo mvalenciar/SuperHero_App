@@ -9,10 +9,15 @@ export const HeroLayout = () => {
         <div className="absolute -top-25 -left-25 w-100 h-100 bg-blue-500 opacity-20 blur-3xl"></div>
         <div className="absolute -bottom-25 -right-25 w-100 h-100 bg-red-500 opacity-20 blur-3xl rounded-full"></div>
       </div>
-      <MenuBar />
-
-      <Outlet />
-      <Footer />
+      <nav>
+        <MenuBar />
+      </nav>
+      <main>
+        <Outlet />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };

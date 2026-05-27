@@ -36,11 +36,13 @@ export const SearchPage = () => {
   }, [heroes, searchTerm, publisherFilter, typeFilter, genderFilter]);
 
   return (
-    <div className="mt-16">
-      <CustomHeader
-        title="Búsqueda Avanzada"
-        description="Encuentra a tus héroes mediante filtros avanzados, especificando su publisher DC o Marvel"
-      />
+    <section className="mt-16">
+      <header>
+        <CustomHeader
+          title="Búsqueda Avanzada"
+          description="Encuentra a tus héroes mediante filtros avanzados, especificando su publisher DC o Marvel"
+        />
+      </header>
       <HeroStats />
       <SearchHeroSection>
         <SearchBar placeholder={"Buscar Héroes"} onQuery={setSearchTerm} />
@@ -53,6 +55,6 @@ export const SearchPage = () => {
       <HeroesDisplaySection heroes={filteredHeroes} loading={loading}>
         <HeroesGrid heroes={filteredHeroes} from="/advancedSearch" />
       </HeroesDisplaySection>
-    </div>
+    </section>
   );
 };
