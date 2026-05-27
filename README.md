@@ -178,7 +178,39 @@ para mejorar la experiencia de usuario.
 
 ### 🖥️ Desktop
 
-![Desktop view](./images/screenshot/desktop/desktop-hero.webp)
+> Vista principal del sistema en pantallas grandes
+
+<p align="center">
+  <img src="./images/screenshot/desktop/desktop-hero.png" width="700" />
+</p>
+
+<p align="center">
+  <img src="./images/screenshot/desktop/desktop-home.png" width="700" />
+</p>
+
+<p align="center">
+  <img src="./images/screenshot/desktop/desktop-grid.png" width="700" />
+</p>
+
+<p align="center">
+  <img src="./images/screenshot/desktop/desktop-footer.png" width="700" />
+</p>
+
+<p align="center">
+  <img src="./images/screenshot/desktop/desktop-advanceSearch.png" width="700" />
+</p>
+
+<p align="center">
+  <img src="./images/screenshot/desktop/desktop-favorites.png" width="700" />
+</p>
+
+<p align="center">
+  <img src="./images/screenshot/desktop/desktop-detail.png.png" width="700" />
+</p>
+
+### 📱 Mobile
+
+> Adaptación responsive para dispositivos móviles
 
 ---
 
