@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { GithubFilled, LinkedinFilled } from "@ant-design/icons";
 
 export const Footer = () => {
   return (
@@ -71,18 +72,23 @@ export const Footer = () => {
 
           <div className="flex gap-4 text-sm text-zinc-400">
             <a
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://github.com/mvalenciar/SuperHero_App"
-              className="hover:text-white transition"
+              aria-label="Repositorio de GitHub"
+              className="hover:text-white hover:scale-110 transition-all duration-300"
             >
-              GitHub
-              <Github />
+              <GithubFilled style={{ fontSize: "32px" }} />
             </a>
 
             <a
-              href="https://www.linkedin.com/feed/"
-              className="hover:text-white transition"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/milton-alonso-valencia-rincon-78054a242/"
+              aria-label="Perfil de LinkedIn"
+              className="hover:text-blue-400 hover:scale-110 transition-all duration-300"
             >
-              LinkedIn
+              <LinkedinFilled style={{ fontSize: "32px" }} />
             </a>
           </div>
         </div>
