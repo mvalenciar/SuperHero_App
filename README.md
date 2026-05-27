@@ -180,19 +180,54 @@ para mejorar la experiencia de usuario.
 
 > Vista principal del sistema en pantallas grandes
 
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-  <img src="./public/images/screenshot/desktop/desktop-hero.png" />
-  <img src="./public/images/screenshot/desktop/desktop-home.png"/>
-  <img src="./public/images/screenshot/desktop/desktop-grid.png" />
-  <img src="./public/images/screenshot/desktop/desktop-footer.png" />
-  <img src="./public/images/screenshot/desktop/desktop-advanceSearch.png" />
-  <img src="./public/images/screenshot/desktop/desktop-favorites.png" />
-  <img src="./public/images/screenshot/desktop/desktop-detail.png" />
-</div>
+<p align="center">
+  <img src="./public/images/screenshot/desktop/desktop-hero.png" width=450/>
+</p>
 
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+<p align="center">
+  <img src="./public/images/screenshot/desktop/desktop-home.png"width=450/>
+</p>
+<p align="center">
+  <img src="./public/images/screenshot/desktop/desktop-grid.png" width=450/>
+</p>
+<p align="center">
+  <img src="./public/images/screenshot/desktop/desktop-footer.png" width=450/>
+</p>
+<p align="center">
+  <img src="./public/images/screenshot/desktop/desktop-advanceSearch.png" width=450/>
+</p>
+<p align="center">
+  <img src="./public/images/screenshot/desktop/desktop-favorites.png" width=450/>
+</p>
+<p align="center">
+  <img src="./public/images/screenshot/desktop/desktop-detail.png" width=450/>
+</p>
+</div>
 ### 📱 Mobile
 
 > Adaptación responsive para dispositivos móviles
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+<p align="center">
+  <img src="./public/images/screenshot/mobile/mobile-hero.png" width=250/>
+</p>
+<p align="center">
+  <img src="./public/images/screenshot/mobile/mobile-menu.png"width=250/>
+</p>
+<p align="center">
+  <img src="./public/images/screenshot/mobile/mobile-heroGrid.png" width=250/>
+</p>
+<p align="center">
+  <img src="./public/images/screenshot/mobile/mobile-stats.png" width=250/>
+</p>
+  <p align="center">
+  <img src="./public/images/screenshot/mobile/mobile-footer.png" width=250/>
+</p>
+<p align="center">
+  <img src="./public/images/screenshot/mobile/mobile-searchPage.png" width=250/>
+</p>
+</div>
 
 ---
 
