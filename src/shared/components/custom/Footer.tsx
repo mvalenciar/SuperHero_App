@@ -47,7 +47,18 @@ export const Footer = () => {
             <div className="space-y-3 text-zinc-400">
               <p>Proyecto hecho con React + TailwindCSS.</p>
 
-              <p>Datos obtenidos desde una API de superhéroes.</p>
+              <p>
+                Datos obtenidos desde la API{" "}
+                <a
+                  href="https://akabab.github.io/superhero-api/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-600"
+                >
+                  superhero-api
+                </a>
+                .{" "}
+              </p>
             </div>
           </div>
         </div>
@@ -59,11 +70,18 @@ export const Footer = () => {
           </p>
 
           <div className="flex gap-4 text-sm text-zinc-400">
-            <a href="#" className="hover:text-white transition">
+            <a
+              href="https://github.com/mvalenciar/SuperHero_App"
+              className="hover:text-white transition"
+            >
               GitHub
+              <Github />
             </a>
 
-            <a href="#" className="hover:text-white transition">
+            <a
+              href="https://www.linkedin.com/feed/"
+              className="hover:text-white transition"
+            >
               LinkedIn
             </a>
           </div>

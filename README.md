@@ -1,75 +1,185 @@
-# React + TypeScript + Vite
+# 🦸 Heroes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web construida con React, TypeScript y Vite para explorar héroes y villanos, visualizar estadísticas de poder, guardar favoritos y navegar dinámicamente entre personajes.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# 🚀 Características
 
-## React Compiler
+- 🔍 Búsqueda avanzada de héroes
+- ❤️ Sistema de favoritos
+- 🧭 Navegación contextual entre páginas
+- ⚡ Navegación entre héroes (anterior / siguiente)
+- 🖼️ Skeleton loading para imágenes
+- 📱 Diseño responsive
+- 🌑 Interfaz dark mode moderna
+- 📊 Visualización de estadísticas de poder
+- 🧠 Tipado completo con TypeScript
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+# 🛠️ Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- React
+- TypeScript
+- Vite
+- React Router
+- TailwindCSS
+- shadcn/ui
+- Lucide React
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 📂 Estructura del proyecto
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+src/
+├── App.css
+├── App.tsx
+├── assets/
+├── context/
+│   ├── HeroesContext.tsx
+│   └── HeroesProvider.tsx
+├── features/
+│   └── heroes/
+│       ├── actions/
+│       │   └── get-superheroes-by-api.ts
+│       ├── api/
+│       │   └── akababSuperhero.api.ts
+│       ├── components/
+│       │   ├── HeroCard.tsx
+│       │   ├── HeroesDisplaySection.tsx
+│       │   ├── HeroesEmptyState.tsx
+│       │   ├── HeroesGrid.tsx
+│       │   ├── HeroPaginationController.tsx
+│       │   ├── HeroStatBar.tsx
+│       │   ├── HeroStatCard.tsx
+│       │   ├── HeroStats.tsx
+│       │   └── SearchHeroSection.tsx
+│       ├── hooks/
+│       │   ├── useFavorite.tsx
+│       │   ├── useHeroes.tsx
+│       │   ├── useHeroesStats.tsx
+│       │   └── usePagination.tsx
+│       ├── interfaces/
+│       │   ├── akababSuperhero.response.ts
+│       │   ├── heroLocationState.interface.ts
+│       │   ├── heroNavigationFrom.type.ts
+│       │   └── superhero.interface.ts
+│       ├── layout/
+│       │   └── HeroLayout.tsx
+│       └── pages/
+│           ├── favorites/
+│           │   └── FavoritesPage.tsx
+│           ├── hero/
+│           │   └── HeroPage.tsx
+│           ├── home/
+│           │   └── HomePage.tsx
+│           └── search/
+│               └── SearchPage.tsx
+├── index.css
+├── main.tsx
+├── router/
+│   └── HeroAppRouter.tsx
+└── shared/
+    ├── components/
+    │   ├── custom/
+    │   │   ├── CustomHeader.tsx
+    │   │   ├── Footer.tsx
+    │   │   ├── Hero.tsx
+    │   │   ├── MenuBar.tsx
+    │   │   ├── MobileMenu.tsx
+    │   │   ├── SearchBar.tsx
+    │   │   └── SearchFilters.tsx
+    │   └── ui/
+    │       ├── badge.tsx
+    │       ├── button-group.tsx
+    │       ├── button.tsx
+    │       ├── card.tsx
+    │       ├── field.tsx
+    │       ├── input.tsx
+    │       ├── label.tsx
+    │       ├── native-select.tsx
+    │       ├── navigation-menu.tsx
+    │       ├── pagination.tsx
+    │       ├── separator.tsx
+    │       ├── sheet.tsx
+    │       └── spinner.tsx
+    └── lib/
+        └── utils.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# ⚙️ Instalación
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Clona el repositorio:
+
+```bash
+git clone <https://github.com/mvalenciar/SuperHero_App.git>
 ```
+
+Instala las dependencias:
+
+```bash
+npm install
+```
+
+Inicia el entorno de desarrollo:
+
+```bash
+npm run dev
+```
+
+---
+
+# 🧭 Rutas principales
+
+| Ruta              | Descripción       |
+| ----------------- | ----------------- |
+| `/`               | Página principal  |
+| `/favorites`      | Héroes favoritos  |
+| `/advancedSearch` | Búsqueda avanzada |
+| `/hero/:idSlug`   | Detalle del héroe |
+
+---
+
+# ✨ Funcionalidades destacadas
+
+## Navegación contextual
+
+La aplicación recuerda desde qué página se abrió un héroe utilizando `location.state`, permitiendo regresar correctamente a:
+
+- Home
+- Favoritos
+- Búsqueda avanzada
+
+---
+
+## Navegación entre héroes
+
+Desde la página de detalle es posible desplazarse al héroe anterior o siguiente sin volver al listado principal.
+
+---
+
+## Carga optimizada de imágenes
+
+Las imágenes utilizan:
+
+- Lazy loading
+- Skeleton loading
+- Fade transition
+
+para mejorar la experiencia de usuario.
+
+---
+
+# 📸 Preview
+
+Agrega aquí screenshots o gifs de la aplicación.
+
+---
+
+# 📄 Licencia
+
+Este proyecto es únicamente educativo y de práctica.
