@@ -61,11 +61,11 @@ export const HeroesContextProvider = ({ children }: PropsWithChildren) => {
       value={{
         //state
         heroes,
-
         loading,
         favoriteHeroesId,
-        isFavorite,
+
         //methods
+        isFavorite,
         saveFavorite: saveFavoriteHero,
       }}
     >
