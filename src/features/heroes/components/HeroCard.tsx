@@ -41,6 +41,7 @@ export const HeroCard = ({ hero, from }: HeroCardProps) => {
 
   return (
     <Card
+      aria-label="hero-card"
       className={cn(
         "group relative w-full max-w-sm overflow-hidden",
         "bg-zinc-950 border-zinc-800/50",
@@ -48,6 +49,7 @@ export const HeroCard = ({ hero, from }: HeroCardProps) => {
         "shadow-2xl shadow-zinc-950/50",
         "cursor-pointer",
       )}
+      role="button"
       onClick={handleHeroCardClick}
     >
       {/* Glow effect */}
@@ -58,10 +60,9 @@ export const HeroCard = ({ hero, from }: HeroCardProps) => {
         {/* Skeleton */}
         {!imageLoaded && (
           <div className="absolute inset-0 bg-zinc-700 flex justify-center items-center">
-            <Spinner className="size-20" />
+            <Spinner aria-label="image-loading-spinner" className="size-20" />
           </div>
         )}
-
         <img
           key={hero.image}
           src={hero.image}
@@ -81,6 +82,7 @@ export const HeroCard = ({ hero, from }: HeroCardProps) => {
           {/* Favorite button */}
 
           <Button
+            aria-label="toggle favorite"
             className="bg-white rounded-md shadow-md p-0 size-10 cursor-pointer"
             onClick={(e) => {
               e.stopPropagation();
@@ -88,6 +90,7 @@ export const HeroCard = ({ hero, from }: HeroCardProps) => {
             }}
           >
             <Heart
+              aria-label="favorite icon"
               className={cn(
                 "size-8 cursor-pointer transition-all duration-300 active:scale-125",
                 isFavorite(hero.id)

@@ -2,7 +2,7 @@
 import { usePagination } from "../hooks/usePagination";
 
 //Components
-import { HeroPaginationController } from "./HeroPaginationController";
+import { HeroPaginationController } from "./HeroPaginationController.tsx";
 import { HeroCard } from "./HeroCard";
 
 //Action and types

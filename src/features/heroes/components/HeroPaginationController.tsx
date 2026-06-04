@@ -41,17 +41,19 @@ export const HeroPaginationController = ({
         <PaginationContent className="gap-2">
           <PaginationItem>
             <PaginationPrevious
+              role="button"
+              aria-label="button-prev"
               className="transition-all hover:bg-primary hover:text-primary-foreground cursor-pointer"
               onClick={prevPage}
             />
           </PaginationItem>
           {!pages.includes(1) && (
-            <PaginationItem>
+            <PaginationItem aria-label="item-ellipsis">
               <PaginationEllipsis className="text-muted-foreground" />
             </PaginationItem>
           )}
           {pages.map((page) => (
-            <PaginationItem key={page}>
+            <PaginationItem key={page} aria-label="item-link">
               <PaginationLink
                 isActive={page === currentPage}
                 className={`
@@ -71,13 +73,15 @@ export const HeroPaginationController = ({
             </PaginationItem>
           ))}
           {!pages.includes(totalPages) && (
-            <PaginationItem>
+            <PaginationItem aria-label="item-ellipsis">
               <PaginationEllipsis className="text-muted-foreground" />
             </PaginationItem>
           )}
 
           <PaginationItem>
             <PaginationNext
+              role="button"
+              aria-label="button-next"
               className="transition-all hover:bg-primary hover:text-primary-foreground cursor-pointer"
               onClick={nextPage}
             />

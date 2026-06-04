@@ -3,58 +3,36 @@ import { beforeEach, describe, expect, test, vi } from "vitest";
 import { useHeroesStats } from "../../hooks/useHeroesStats";
 import type { Superhero } from "../../interfaces/superhero.interface";
 import { HeroStats } from "../HeroStats";
+import { createMockHero } from "../../test/superhero.factory";
 
 vi.mock("../../hooks/useHeroesStats");
 
 const mockUseHeroesStats = vi.mocked(useHeroesStats);
 
-const createMockHero = ({
-  id,
-  name,
-  intelligence,
-  strength,
-}: {
-  id: number;
-  name: string;
-  intelligence: number;
-  strength: number;
-}): Superhero => ({
-  id: id,
-  name: name,
-  slug: "",
-  fullname: "",
-  image: "",
-  gender: "",
-  race: null,
-  height: [],
-  weight: [],
-  placeOfBirth: "",
-  publisher: null,
+const mockStrongestHero: Superhero = createMockHero({
+  id: 1,
+  name: "Superman",
   stats: {
-    intelligence: intelligence,
-    strength: strength,
+    intelligence: 50,
+    strength: 100,
     speed: 0,
     durability: 0,
     power: 0,
     combat: 0,
   },
-  work: "",
-  type: "",
-  groupAffiliation: "",
-});
-
-const mockStrongestHero: Superhero = createMockHero({
-  id: 1,
-  name: "Superman",
-  strength: 100,
-  intelligence: 50,
 });
 
 const mockSmartestHero: Superhero = createMockHero({
   id: 2,
   name: "Iron Man",
-  strength: 50,
-  intelligence: 100,
+  stats: {
+    intelligence: 100,
+    strength: 50,
+    speed: 0,
+    durability: 0,
+    power: 0,
+    combat: 0,
+  },
 });
 
 describe("HeroStats", () => {

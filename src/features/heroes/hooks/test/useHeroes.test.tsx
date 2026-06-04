@@ -1,42 +1,17 @@
 import { describe, expect, test, vi } from "vitest";
 import { getSuperheroesByApi } from "../../actions/get-superheroes-by-api";
-import type { Superhero } from "../../interfaces/superhero.interface";
 import { act, renderHook } from "@testing-library/react";
 import { useHeroes } from "../useHeroes";
+import { createMockHero } from "../../test/superhero.factory";
 
 vi.mock("../../actions/get-superheroes-by-api", () => ({
   getSuperheroesByApi: vi.fn(),
 }));
 
-const createMockHero = (id: number): Superhero => {
-  return {
-    id: id,
-    name: `Hero ${id}`,
-    slug: "",
-    fullname: "",
-    image: "",
-    gender: "",
-    race: null,
-    height: [],
-    weight: [],
-    placeOfBirth: "",
-    publisher: null,
-    stats: {
-      intelligence: 0,
-      strength: 0,
-      speed: 0,
-      durability: 0,
-      power: 0,
-      combat: 0,
-    },
-    work: "",
-    type: "",
-    groupAffiliation: "",
-  };
-};
-
 const mockHeroes = Array.from({ length: 20 }, (_, index) => {
-  return createMockHero(index);
+  return createMockHero({
+    id: index,
+  });
 });
 
 const renderUseHeroes = () => renderHook(() => useHeroes());
