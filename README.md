@@ -33,83 +33,123 @@ Aplicación web construida con React, TypeScript y Vite para explorar héroes y 
 # 📂 Estructura del proyecto
 
 ```bash
-src/
-├── App.css
-├── App.tsx
-├── assets/
-├── context/
-│   ├── HeroesContext.tsx
-│   └── HeroesProvider.tsx
-├── features/
-│   └── heroes/
-│       ├── actions/
-│       │   └── get-superheroes-by-api.ts
-│       ├── api/
-│       │   └── akababSuperhero.api.ts
-│       ├── components/
-│       │   ├── HeroCard.tsx
-│       │   ├── HeroesDisplaySection.tsx
-│       │   ├── HeroesEmptyState.tsx
-│       │   ├── HeroesGrid.tsx
-│       │   ├── HeroPaginationController.tsx
-│       │   ├── HeroStatBar.tsx
-│       │   ├── HeroStatCard.tsx
-│       │   ├── HeroStats.tsx
-│       │   └── SearchHeroSection.tsx
-│       ├── hooks/
-│       │   ├── useFavorite.tsx
-│       │   ├── useHeroes.tsx
-│       │   ├── useHeroesStats.tsx
-│       │   └── usePagination.tsx
-│       ├── interfaces/
-│       │   ├── akababSuperhero.response.ts
-│       │   ├── heroLocationState.interface.ts
-│       │   ├── heroNavigationFrom.type.ts
-│       │   └── superhero.interface.ts
-│       ├── layout/
-│       │   └── HeroLayout.tsx
-│       └── pages/
-│           ├── favorites/
-│           │   └── FavoritesPage.tsx
-│           ├── hero/
-│           │   └── HeroPage.tsx
-│           ├── home/
-│           │   └── HomePage.tsx
-│           └── search/
-│               └── SearchPage.tsx
-├── index.css
-├── main.tsx
-├── router/
-│   └── HeroAppRouter.tsx
-└── shared/
-    ├── components/
-    │   ├── custom/
-    │   │   ├── CustomHeader.tsx
-    │   │   ├── Footer.tsx
-    │   │   ├── Hero.tsx
-    │   │   ├── MenuBar.tsx
-    │   │   ├── MobileMenu.tsx
-    │   │   ├── SearchBar.tsx
-    │   │   └── SearchFilters.tsx
-    │   └── ui/
-    │       ├── badge.tsx
-    │       ├── button-group.tsx
-    │       ├── button.tsx
-    │       ├── card.tsx
-    │       ├── field.tsx
-    │       ├── input.tsx
-    │       ├── label.tsx
-    │       ├── native-select.tsx
-    │       ├── navigation-menu.tsx
-    │       ├── pagination.tsx
-    │       ├── separator.tsx
-    │       ├── sheet.tsx
-    │       └── spinner.tsx
-    └── lib/
-        └── utils.ts
+📦src
+ ┣ 📂context
+ ┃ ┣ 📜HeroesContext.tsx
+ ┃ ┗ 📜HeroesProvider.tsx
+ ┣ 📂features
+ ┃ ┗ 📂heroes
+ ┃ ┃ ┣ 📂actions
+ ┃ ┃ ┃ ┗ 📜get-superheroes-by-api.ts
+ ┃ ┃ ┣ 📂api
+ ┃ ┃ ┃ ┗ 📜akababSuperhero.api.ts
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┣ 📂test
+ ┃ ┃ ┃ ┃ ┣ 📜HeroCard.test.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜HeroesDisplaySection.test.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜HeroesEmptyState.test.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜HeroesGrid.test.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜HeroPaginationController.test.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜HeroStatBar.test.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜HeroStatCard.test.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜HeroStats.test.tsx
+ ┃ ┃ ┃ ┃ ┗ 📜SearchHeroSection.test.tsx
+ ┃ ┃ ┃ ┣ 📜HeroCard.tsx
+ ┃ ┃ ┃ ┣ 📜HeroesDisplaySection.tsx
+ ┃ ┃ ┃ ┣ 📜HeroesEmptyState.tsx
+ ┃ ┃ ┃ ┣ 📜HeroesGrid.tsx
+ ┃ ┃ ┃ ┣ 📜HeroPaginationController.tsx
+ ┃ ┃ ┃ ┣ 📜HeroStatBar.tsx
+ ┃ ┃ ┃ ┣ 📜HeroStatCard.tsx
+ ┃ ┃ ┃ ┣ 📜HeroStats.tsx
+ ┃ ┃ ┃ ┗ 📜SearchHeroSection.tsx
+ ┃ ┃ ┣ 📂hooks
+ ┃ ┃ ┃ ┣ 📂test
+ ┃ ┃ ┃ ┃ ┣ 📜useFavorite.test.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜useHeroes.test.tsx
+ ┃ ┃ ┃ ┃ ┣ 📜useHeroesStats.test.tsx
+ ┃ ┃ ┃ ┃ ┗ 📜usePagination.test.tsx
+ ┃ ┃ ┃ ┣ 📜useFavorite.tsx
+ ┃ ┃ ┃ ┣ 📜useHeroes.tsx
+ ┃ ┃ ┃ ┣ 📜useHeroesStats.tsx
+ ┃ ┃ ┃ ┗ 📜usePagination.tsx
+ ┃ ┃ ┣ 📂interfaces
+ ┃ ┃ ┃ ┣ 📜akababSuperhero.response.ts
+ ┃ ┃ ┃ ┣ 📜heroLocationState.interface.ts
+ ┃ ┃ ┃ ┣ 📜heroNavigationFrom.type.ts
+ ┃ ┃ ┃ ┗ 📜superhero.interface.ts
+ ┃ ┃ ┣ 📂layout
+ ┃ ┃ ┃ ┗ 📜HeroLayout.tsx
+ ┃ ┃ ┣ 📂pages
+ ┃ ┃ ┃ ┣ 📂favorites
+ ┃ ┃ ┃ ┃ ┗ 📜FavoritesPage.tsx
+ ┃ ┃ ┃ ┣ 📂hero
+ ┃ ┃ ┃ ┃ ┗ 📜HeroPage.tsx
+ ┃ ┃ ┃ ┣ 📂home
+ ┃ ┃ ┃ ┃ ┗ 📜HomePage.tsx
+ ┃ ┃ ┃ ┗ 📂search
+ ┃ ┃ ┃ ┃ ┗ 📜SearchPage.tsx
+ ┃ ┃ ┗ 📂test
+ ┃ ┃ ┃ ┗ 📜superhero.factory.ts
+ ┣ 📂router
+ ┃ ┗ 📜HeroAppRouter.tsx
+ ┣ 📂shared
+ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📂custom
+ ┃ ┃ ┃ ┣ 📜CustomHeader.tsx
+ ┃ ┃ ┃ ┣ 📜Footer.tsx
+ ┃ ┃ ┃ ┣ 📜Hero.tsx
+ ┃ ┃ ┃ ┣ 📜MenuBar.tsx
+ ┃ ┃ ┃ ┣ 📜MobileMenu.tsx
+ ┃ ┃ ┃ ┣ 📜SearchBar.tsx
+ ┃ ┃ ┃ ┗ 📜SearchFilters.tsx
+ ┃ ┃ ┗ 📂ui
+ ┃ ┃ ┃ ┣ 📜badge.tsx
+ ┃ ┃ ┃ ┣ 📜button-group.tsx
+ ┃ ┃ ┃ ┣ 📜button.tsx
+ ┃ ┃ ┃ ┣ 📜card.tsx
+ ┃ ┃ ┃ ┣ 📜field.tsx
+ ┃ ┃ ┃ ┣ 📜input.tsx
+ ┃ ┃ ┃ ┣ 📜label.tsx
+ ┃ ┃ ┃ ┣ 📜native-select.tsx
+ ┃ ┃ ┃ ┣ 📜navigation-menu.tsx
+ ┃ ┃ ┃ ┣ 📜pagination.tsx
+ ┃ ┃ ┃ ┣ 📜separator.tsx
+ ┃ ┃ ┃ ┣ 📜sheet.tsx
+ ┃ ┃ ┃ ┗ 📜spinner.tsx
+ ┃ ┗ 📂lib
+ ┃ ┃ ┗ 📜utils.ts
+ ┣ 📜App.tsx
+ ┣ 📜index.css
+ ┣ 📜main.tsx
+ ┗ 📜setupTests.ts
 ```
 
 ---
+
+# 🧪 Pruebas Automatizadas (Testing)
+
+El proyecto cuenta con una cobertura robusta de pruebas unitarias y de integración utilizando **Vitest** y **React Testing Library (RTL)**. Se evalúa el comportamiento de los componentes desde la perspectiva del usuario y el correcto funcionamiento del estado global.
+
+### Herramientas de Testing Utilizadas:
+
+- **Vitest**: Entorno de ejecución de pruebas ultrarrápido nativo de Vite.
+- **React Testing Library**: Validación de comportamiento y accesibilidad en componentes de interfaz.
+- **Factory Pattern**: Creación de mocks limpios y tipados mediante `superhero.factory.ts`.
+
+### Scripts de Ejecución:
+
+Para arrancar el suite de pruebas en modo interactivo (_watch mode_):
+
+```bash
+pnpm test
+```
+
+Para generar un informe del porcentaje de cobertura de código (_code coverage_):
+
+```bash
+pnpm coverage
+```
 
 # ⚙️ Instalación
 
@@ -122,13 +162,13 @@ git clone <https://github.com/mvalenciar/SuperHero_App.git>
 Instala las dependencias:
 
 ```bash
-npm install
+pnpm install
 ```
 
 Inicia el entorno de desarrollo:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 ---
