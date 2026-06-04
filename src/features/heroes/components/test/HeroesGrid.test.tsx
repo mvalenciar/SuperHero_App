@@ -6,6 +6,18 @@ import { HeroesGrid } from "../HeroesGrid";
 import type { HeroPaginationController } from "../HeroPaginationController";
 import { createMockHero } from "../../test/superhero.factory";
 
+// Simulamos el hook de GSAP para que no ensucie la cobertura del componente
+vi.mock("@gsap/react", () => ({
+  useGSAP: (callback: () => void) => callback(), // Simplemente ejecuta la lógica sin animar
+}));
+
+// Simulamos la librería base de GSAP para interceptar los métodos que usas
+vi.mock("gsap", () => ({
+  default: {
+    from: vi.fn(), // Reemplaza gsap.from por una función vacía simulada
+  },
+}));
+
 const mockHeroes = Array.from({ length: 20 }, (_, index) =>
   createMockHero({
     id: index,
