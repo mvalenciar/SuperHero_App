@@ -1,5 +1,6 @@
 //hooks
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router";
 
 //Contexto
 import { HeroesContext } from "../../../context/HeroesContext";
@@ -14,7 +15,6 @@ import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import type { Superhero } from "../interfaces/superhero.interface";
-import { useNavigate } from "react-router";
 import type { HeroNavigationFrom } from "../interfaces/heroNavigationFrom.type";
 
 interface HeroCardProps {

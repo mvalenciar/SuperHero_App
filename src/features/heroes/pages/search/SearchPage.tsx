@@ -31,7 +31,7 @@ export const SearchPage = () => {
         (!typeFilter ||
           hero.type?.toLowerCase().includes(typeFilter.toLowerCase())) &&
         (!genderFilter ||
-          hero.gender?.toLowerCase().includes(genderFilter.toLowerCase())),
+          hero.gender?.toLowerCase() === genderFilter.toLowerCase()),
     );
   }, [heroes, searchTerm, publisherFilter, typeFilter, genderFilter]);
 

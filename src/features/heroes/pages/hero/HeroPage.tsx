@@ -1,5 +1,6 @@
 //Hooks
 import { useContext, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router";
 
 //Context
 import { HeroesContext } from "../../../../context/HeroesContext";
@@ -11,7 +12,6 @@ import { Spinner } from "@/components/ui/spinner";
 import { ArrowBigLeft, ArrowBigRight, ArrowBigUp } from "lucide-react";
 
 //Action and Types
-import { useLocation, useNavigate, useParams } from "react-router";
 import { cn } from "@/lib/utils";
 import type { Superhero } from "../../interfaces/superhero.interface";
 import type { HeroLocationState } from "../../interfaces/heroLocationState.interface";
@@ -96,7 +96,7 @@ export const HeroPage = () => {
               {/* SKELETON */}
               {!imageLoaded && (
                 <div className="absolute inset-0 flex justify-center items-center rounded-3xl border border-zinc-800 bg-zinc-900 animate-pulse overflow-hidden">
-                  <Spinner className="size-14" />
+                  <Spinner aria-label="spinner-icon" className="size-14" />
                 </div>
               )}
               <img
@@ -115,6 +115,8 @@ export const HeroPage = () => {
             <div className="flex gap-3">
               {previousHero && (
                 <Button
+                  role="button"
+                  aria-label="prev-button"
                   className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
                   onClick={() => handleHeroNavigation(previousHero)}
                 >
@@ -123,6 +125,8 @@ export const HeroPage = () => {
               )}
 
               <Button
+                role="button"
+                aria-label="back-button"
                 onClick={() => handleBack(from)}
                 className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
               >
@@ -131,6 +135,8 @@ export const HeroPage = () => {
 
               {nextHero && (
                 <Button
+                  role="button"
+                  aria-label="next-button"
                   className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
                   onClick={() => handleHeroNavigation(nextHero)}
                 >
@@ -234,33 +240,6 @@ export const HeroPage = () => {
                   {hero.groupAffiliation}
                 </p>
               </div>
-
-              {/* <div className="flex gap-3">
-                {previousHero && (
-                  <Button
-                    className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
-                    onClick={() => handleHeroNavigation(previousHero)}
-                  >
-                    <ArrowBigLeft />
-                  </Button>
-                )}
-
-                <Button
-                  onClick={() => handleBack(from)}
-                  className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
-                >
-                  <ArrowBigUp />
-                </Button>
-
-                {nextHero && (
-                  <Button
-                    className="cursor-pointer bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700 hover:border-amber-500/40 transition-all duration-300 w-fit"
-                    onClick={() => handleHeroNavigation(nextHero)}
-                  >
-                    <ArrowBigRight />
-                  </Button>
-                )}
-              </div> */}
             </div>
           </div>
         </div>

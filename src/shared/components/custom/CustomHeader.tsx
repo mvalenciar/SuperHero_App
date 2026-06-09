@@ -31,8 +31,6 @@ export const CustomHeader = ({ title, description }: CustomHeaderProps) => {
         leading-relaxed
       "
       >
-        {/* Explora y conoce a fondo a héroes y villanos del universo de DC y
-        Marvel. Descubre sus poderes, historias y selecciona a tus favoritos. */}
         {description}
       </p>
     </div>
