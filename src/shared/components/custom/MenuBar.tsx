@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import logo from "/images/logo_app.png";
 
 import { MobileMenu } from "./MobileMenu";
 import {
@@ -13,7 +12,11 @@ export const MenuBar = () => {
   return (
     <div className="w-full px-4 py-2 bg-slate-900/70 backdrop-blur-md border-b border-white/10 flex justify-between items-center fixed top-0 left-0 z-50">
       {/* 🔥 Logo pequeño */}
-      <img src={logo} className="w-20" alt="logo pequeño de la hero app" />
+      <img
+        src="/images/logo_app.png"
+        className="w-20"
+        alt="logo pequeño de la hero app"
+      />
 
       {/* 🖥️ Desktop */}
       <div className="hidden md:flex">
