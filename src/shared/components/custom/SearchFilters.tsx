@@ -21,6 +21,7 @@ export const SearchFilters = ({
         <NativeSelectOption value={``}>Editorial</NativeSelectOption>
         <NativeSelectOption value={`dc`}>DC</NativeSelectOption>
         <NativeSelectOption value={`marvel`}>Marvel</NativeSelectOption>
+        <NativeSelectOption value={`dark`}>Dark Horse</NativeSelectOption>
       </NativeSelect>
       <NativeSelect
         role="combobox"
